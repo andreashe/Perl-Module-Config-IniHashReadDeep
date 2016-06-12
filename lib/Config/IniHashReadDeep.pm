@@ -1,6 +1,5 @@
 package Config::IniHashReadDeep; ## Loads INI config as deep hashes
 
-our $VERSION='0.04';
 
 use strict;
 
@@ -10,6 +9,9 @@ use Config::IniHash;
 use vars qw(@ISA @EXPORT %EXPORT_TAGS $VERSION);
 
 use Exporter;
+
+our $VERSION='0.04';
+
 
 @ISA = qw(Exporter);
 
