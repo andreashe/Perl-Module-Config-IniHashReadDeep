@@ -4,7 +4,8 @@ package Config::IniHashReadDeep; ## Loads INI config as deep hashes
 use strict;
 
 
-use Config::IniHash;
+use Config::INI::Reader;
+
 
 use vars qw(@ISA @EXPORT %EXPORT_TAGS $VERSION);
 
@@ -141,7 +142,7 @@ Exporter::export_ok_tags('all');
 
 
 
-# At least it takes a filename. For further values, please have a look into L<Config::IniHash>
+# At least it takes a filename.
 # 
 # You may set a different 'delimiter'.
 sub new { # $inihash (%options)
@@ -154,7 +155,8 @@ sub new { # $inihash (%options)
   my @v=@_;
   my $v={@v};
 
-  my $ini = ReadINI($first,@v);
+  
+  my $ini = Config::INI::Reader->read_file( $first );
 
   $this->{'inihash_flat'} = $ini;
 
@@ -406,7 +408,7 @@ The example above will print that:
 
 =head1 DESCRIPTION
 
-It is a wrapper using Config::IniHash, but only for loading and it does something
+It is a wrapper using Config::INI::Reader, but only for loading and it does something
 special; using the entries as paths, delimited by '.' and building a hash tree of it.
 
 
@@ -416,7 +418,7 @@ special; using the entries as paths, delimited by '.' and building a hash tree o
 
 L<Exporter> 
 
-L<Config::IniHash> 
+L<Config::INI::Reader> 
 
 
 =head1 METHODS
@@ -425,7 +427,7 @@ L<Config::IniHash>
 
  my $inihash = $this->new(%options);
 
-At least it takes a filename. For further values, please have a look into L<Config::IniHash>
+At least it takes a filename.
 
 You may set a different 'delimiter'.
 
